@@ -1,0 +1,15 @@
+{
+  "header": {
+    "created_by": "cezar-pokropek",
+    "created_date": "20211008"
+  },
+  "body": {
+    "pg_target_table": "futureschema.futurex_course",
+    "replace_null_value": {
+      "course_id": "NO",
+      "course_name": "NO",
+      "author_name": "YES",
+      "no_of_reviews": "NO"
+    }
+  }
+}
