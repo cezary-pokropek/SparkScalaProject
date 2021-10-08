@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory
 object SparkTransformer {
   private val logger = LoggerFactory.getLogger(getClass.getName)
 
-  // Transformation method, retrieve DataFrame, repalave author_name null with Unknown
+  // Transformation method, retrieve DataFrame, replace author_name null with Unknown
   def replaceNullValues(dataFrame : DataFrame) : DataFrame = {
     logger.warn("replaceNullValues method started")
 

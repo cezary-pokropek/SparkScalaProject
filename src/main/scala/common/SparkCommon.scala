@@ -1,5 +1,6 @@
 package common
 
+import exceptions.InvalidEnvironmentException
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.slf4j.LoggerFactory
 
@@ -11,6 +12,11 @@ object SparkCommon {
     try{
       // Create a Spark Session
       // For Windows
+      if (inputConfig.env != "dev") {
+        throw new InvalidEnvironmentException("Please pass a valid environment")
+      }
+
+
       if (inputConfig.env == "dev") {
         logger.info("Setting Hadoop home in a the local environment")
         System.setProperty("hadoop.home.dir", "C:\\winutils")
@@ -34,6 +40,11 @@ object SparkCommon {
       //df.show()
       //df.write.format(source = "csv").save(path = "samplesq")
     } catch {
+
+      case e: InvalidEnvironmentException =>
+        throw new InvalidEnvironmentException("Please pass a valid environment")
+        None
+
       case e: Exception =>
         logger.error("An error has occured in Spark Session creation")
         System.exit(1)
